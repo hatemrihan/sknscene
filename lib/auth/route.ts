@@ -18,7 +18,7 @@ declare module "next-auth/jwt" {
 // Admin emails — loaded from env var for easy changes without redeployment.
 // Set ADMIN_EMAILS in .env.local as a comma-separated list.
 // Falls back to hardcoded list if env var is not set.
-const FALLBACK_ADMIN_EMAILS = ["hatemrihann@gmail.com", "hatemrihan100@gmail.com", "laraabroumian@icloud.com"];
+const FALLBACK_ADMIN_EMAILS = ["hatemrihann@gmail.com", "hatemrihan100@gmail.com", "laraabroumian@icloud.com", "laraabroumian18@gmail.com"];
 
 export function getAdminEmails(): string[] {
     const envEmails = process.env.ADMIN_EMAILS;
