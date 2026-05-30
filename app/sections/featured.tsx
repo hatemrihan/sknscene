@@ -7,7 +7,7 @@ import Link from 'next/link';
 const SunIcon = () => (
     <svg
         viewBox="0 0 64 64"
-        className="w-16 h-16 text-[#E11D00] mx-auto mb-6"
+        className="w-16 h-16 text-[#3D2314] mx-auto mb-6"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -49,7 +49,7 @@ const SunIcon = () => (
 const SparklesIcon = () => (
     <svg
         viewBox="0 0 24 24"
-        className="w-4 h-4 text-[#E11D00] absolute -top-3.5 left-1/2 -translate-x-1/2"
+        className="w-4 h-4 text-[#3D2314] absolute -top-3.5 left-1/2 -translate-x-1/2"
         fill="currentColor"
     >
         <path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5z" />
@@ -58,7 +58,7 @@ const SparklesIcon = () => (
 
 export default function Featured() {
     return (
-        <section className="relative z-10 w-full py-16 md:py-24 bg-[#F5F2EB] text-[#E11D00] overflow-hidden" dir="ltr">
+        <section className="relative z-10 w-full py-16 md:py-24 bg-[#F5F2EB] text-[#3D2314] overflow-hidden" dir="ltr">
             <div className="max-w-4xl mx-auto px-6 text-center">
                 {/* Sun Illustration */}
                 <SunIcon />
@@ -69,15 +69,14 @@ export default function Featured() {
                 </h2>
 
                 {/* Subtitle / Description */}
-                <p className="text-[13px] md:text-[14px] leading-relaxed max-w-2xl mx-auto mb-10 text-[#E11D00]/80">
-                    Get to know our lineup of dreamy SPF formulas, created by a squad of summer-lovin&apos; skincare specialists. Made in Italy with locally sourced Mediterranean ingredients.
-                </p>
+                <p className="text-[13px] md:text-[14px] leading-relaxed max-w-2xl mx-auto mb-10 text-[#3D2314]/80">
+                    We’re here to serve glow, pretty routines, and skincare your skin will absolutely obsess over.                </p>
 
                 {/* Call to Action Button */}
                 <div className="mb-20">
                     <Link
                         href="/shop"
-                        className="inline-block px-8 py-3.5 border border-[#E11D00] text-[10px] md:text-[11px] font-semibold tracking-[0.2em] hover:bg-[#E11D00] hover:text-[#F5F2EB] transition-all duration-300"
+                        className="inline-block px-8 py-3.5 border border-[#3D2314] text-[10px] md:text-[11px] font-semibold tracking-[0.2em] hover:bg-[#3D2314] hover:text-[#F5F2EB] transition-all duration-300"
                     >
                         SHOP THE FULL RANGE HERE
                     </Link>
@@ -110,7 +109,7 @@ export default function Featured() {
                             <h3 className="text-[11px] md:text-[12px] font-bold tracking-[0.15em] mb-1 uppercase">
                                 EVERYDAY SUNSCREEN SPF30
                             </h3>
-                            <p className="text-[12px] italic text-[#E11D00]/70 font-serif">
+                            <p className="text-[12px] italic text-[#3D2314]/70 font-serif">
                                 Face
                             </p>
                         </div>
@@ -140,7 +139,7 @@ export default function Featured() {
                             <h3 className="text-[11px] md:text-[12px] font-bold tracking-[0.15em] mb-1 uppercase">
                                 ALL-DAY SUNSCREEN SPF30
                             </h3>
-                            <p className="text-[12px] italic text-[#E11D00]/70 font-serif">
+                            <p className="text-[12px] italic text-[#3D2314]/70 font-serif">
                                 Body
                             </p>
                         </div>
