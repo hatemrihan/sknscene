@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
-import dynamic from "next/dynamic";
-
-const Ballpit = dynamic(() => import("@/components/Ballpit"), { ssr: false });
 
 const Typewriter = ({
     text,
@@ -70,25 +67,10 @@ function LoginContent() {
     }
 
     return (
-        <main className="min-h-[100dvh] bg-stone-900 flex flex-col md:flex-row text-white relative overflow-hidden font-sans">
+        <main className="min-h-[100dvh] bg-stone-950 flex flex-col md:flex-row text-white relative overflow-hidden font-sans">
 
-            {/* ── Ballpit Background ── */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <Ballpit
-                    count={100}
-                    gravity={0.3}
-                    friction={0.99}
-                    wallBounce={0.9}
-                    followCursor={true}
-                    colors={[0x3a3a3a, 0x555555, 0x888888]}
-                    ambientColor={0xffffff}
-                    ambientIntensity={0.8}
-                    lightIntensity={100}
-                    minSize={0.15}
-                    maxSize={0.45}
-                    maxVelocity={0.1}
-                />
-            </div>
+            {/* Soft Radial Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/[0.015] rounded-full blur-[100px] pointer-events-none z-0" />
 
             {/* Center Dividing Line */}
             <div className="hidden md:block absolute md:left-1/2 md:top-0 md:w-[1px] md:h-full bg-stone-800 z-10" />
@@ -141,12 +123,12 @@ function LoginContent() {
                 <button
                     onClick={handleGoogleSignIn}
                     disabled={loading}
-                    className="min-h-[48px] px-8 py-4 flex items-center justify-center transition-colors duration-500 cursor-pointer relative group bg-transparent border-none appearance-none active:scale-95 touch-manipulation"
+                    className="min-h-[50px] w-full max-w-[280px] sm:max-w-[320px] px-6 py-3 flex items-center justify-center transition-all duration-300 cursor-pointer relative group bg-white/[0.03] border border-white/[0.08] hover:border-white/20 active:border-white/30 rounded-lg hover:bg-white/[0.06] active:scale-[0.98] touch-manipulation z-30"
                 >
                     <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 md:w-5 md:h-5 flex items-center justify-center flex-shrink-0">
+                        <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                             {loading ? (
-                                <div className="animate-spin rounded-full h-5 w-5 md:h-4 md:w-4 border-b-2 border-white" />
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
                             ) : (
                                 <svg className="w-full h-full" viewBox="0 0 24 24">
                                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
@@ -156,11 +138,10 @@ function LoginContent() {
                                 </svg>
                             )}
                         </div>
-                        <span className="text-xs sm:text-sm md:text-xs uppercase tracking-widest font-medium text-[#888] group-hover:text-white group-active:text-white transition-colors duration-500">
-                            {loading ? "SIGNING IN..." : "CONTINUE WITH GOOGLE"}
+                        <span className="text-xs uppercase tracking-widest font-medium text-stone-300 group-hover:text-white transition-colors duration-300">
+                            {loading ? "Signing in..." : "Continue with Google"}
                         </span>
                     </div>
-                    <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
                 </button>
 
                 {error && (
