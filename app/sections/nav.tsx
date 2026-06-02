@@ -185,17 +185,17 @@ export default function Nav() {
             {/* ━━━ DESKTOP NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
             <nav
                 className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-transparent
-          ${isMobile ? 'pointer-events-none opacity-0 h-0 overflow-hidden' : ''}
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-transparent pointer-events-none
+          ${isMobile ? 'opacity-0 h-0 overflow-hidden' : ''}
         `}
                 aria-label="Main navigation"
                 id="desktop-nav"
             >
-                <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[140px] px-8 lg:px-12">
+                <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[140px] px-8 lg:px-12 pointer-events-none">
                     {/* ── Logo ────────────────────────────────────────── */}
                     <Link
                         href={'/'}
-                        className="relative flex items-center gap-2 group"
+                        className="relative flex items-center gap-2 group pointer-events-auto"
                         aria-label="Sknscene home"
                     >
                         <Image
@@ -209,7 +209,7 @@ export default function Nav() {
                     </Link>
 
                     {/* ── Center links ────────────────────────────────── */}
-                    <ul className="flex items-center gap-1" role="list">
+                    <ul className="flex items-center gap-1 pointer-events-auto" role="list">
                         {localizedItems.map((item) => (
                             <li key={item.href}>
                                 <Link
@@ -233,7 +233,7 @@ export default function Nav() {
                     </ul>
 
                     {/* ── Right actions ───────────────────────────────── */}
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 pointer-events-auto">
                         {/* Search Desktop */}
                         <div className="relative" ref={desktopSearchRef}>
                             <Button
@@ -411,7 +411,7 @@ export default function Nav() {
                                 alt="Sknscene Logo"
                                 width={300}
                                 height={120}
-                                className="h-[70px] w-auto object-contain select-none brightness-0 invert"
+                                className="h-[70px] w-auto object-contain select-none"
                                 draggable={false}
                             />
                         </Link>
@@ -576,20 +576,12 @@ export default function Nav() {
                             <span className="text-[11px] text-muted-foreground uppercase tracking-widest block font-medium">Follow us</span>
                             <div className="flex gap-6">
                                 <a
-                                    href="https://instagram.com/sknscene"
+                                    href="https://www.instagram.com/sknscene.lb/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                 >
                                     Instagram
-                                </a>
-                                <a
-                                    href="https://tiktok.com/@sknscene"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                    TikTok
                                 </a>
                             </div>
                         </div>

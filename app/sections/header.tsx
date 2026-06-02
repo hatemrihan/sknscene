@@ -12,7 +12,7 @@ export default function Header() {
             <div className="absolute inset-0 z-0 select-none">
                 <Image
                     src="/images/two.jpg"
-                    alt="Sknscene Skincare"
+                    alt="Sknscenee Skincare"
                     fill
                     priority
                     className="object-cover"

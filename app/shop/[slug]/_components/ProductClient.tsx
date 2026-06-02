@@ -77,6 +77,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
     const [showCartNotification, setShowCartNotification] = useState(false);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const [cartError, setCartError] = useState('');
+    const [isJustAdded, setIsJustAdded] = useState(false);
     const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
     // ── Derived: find matching variant from selected attributes ──
@@ -245,7 +246,11 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
             }, 1);
 
             setShowCartNotification(true);
-            setTimeout(() => setShowCartNotification(false), 3000);
+            setIsJustAdded(true);
+            setTimeout(() => {
+                setShowCartNotification(false);
+                setIsJustAdded(false);
+            }, 3000);
 
             // Analytics: AddToCart event
             trackEvent({
@@ -370,7 +375,16 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                             </Link>
                                             <meta itemProp="position" content="1" />
                                         </li>
-                                        <span className="mx-2 text-stone-400" aria-hidden="true">·</span>
+                                        <svg
+                                            className="w-2 h-2 mx-2 text-stone-400 shrink-0"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={2.5}
+                                            aria-hidden="true"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
                                         {product.categories?.[0] && (
                                             <>
                                                 <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
@@ -379,7 +393,16 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                                     </Link>
                                                     <meta itemProp="position" content="2" />
                                                 </li>
-                                                <span className="mx-2 text-stone-400" aria-hidden="true">·</span>
+                                                <svg
+                                                    className="w-2 h-2 mx-2 text-stone-400 shrink-0"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    strokeWidth={2.5}
+                                                    aria-hidden="true"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                                </svg>
                                             </>
                                         )}
                                         <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
@@ -444,16 +467,20 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                 <button
                                     onClick={handleAddToCart}
                                     disabled={isAddingToCart || currentStock <= 0}
-                                    className={`w-full py-4 text-sm font-bold tracking-wider transition-colors duration-200 rounded-md cursor-pointer ${currentStock <= 0
-                                        ? 'bg-stone-250 text-stone-400 cursor-not-allowed border border-stone-300'
-                                        : 'bg-[#E11D00] text-white border border-[#E11D00] hover:bg-[#c01800] focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none'
+                                    className={`w-full py-4 text-sm font-bold tracking-wider transition-colors duration-200 cursor-pointer rounded-none border ${currentStock <= 0
+                                        ? 'bg-stone-250 text-stone-400 border-stone-300 cursor-not-allowed'
+                                        : isJustAdded
+                                            ? 'bg-transparent text-stone-950 border-transparent cursor-default'
+                                            : 'bg-stone-950 text-white border-stone-950 hover:bg-stone-850 focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none'
                                         }`}
                                 >
-                                    {isAddingToCart
-                                        ? "Adding..."
-                                        : currentStock <= 0
-                                            ? "Out of Stock"
-                                            : "Add to Cart"
+                                    {isJustAdded
+                                        ? "Added to Cart"
+                                        : isAddingToCart
+                                            ? "Adding..."
+                                            : currentStock <= 0
+                                                ? "Out of Stock"
+                                                : "Add to Cart"
                                     }
                                 </button>
 
@@ -461,9 +488,9 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                 <button
                                     onClick={handleBuyNow}
                                     disabled={isAddingToCart || currentStock <= 0}
-                                    className={`w-full py-4 text-sm font-bold tracking-wider transition-colors duration-200 border rounded-md cursor-pointer ${currentStock <= 0
+                                    className={`w-full py-4 text-sm font-bold tracking-wider transition-colors duration-200 border rounded-none cursor-pointer ${currentStock <= 0
                                         ? 'bg-stone-200/50 text-stone-400 border-stone-300 cursor-not-allowed'
-                                        : 'bg-stone-950 text-white border-stone-950 hover:bg-stone-850 focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none'
+                                        : 'bg-transparent text-stone-950 border-stone-950 hover:bg-stone-950 hover:text-white focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none'
                                         }`}
                                 >
                                     {currentStock <= 0
@@ -681,7 +708,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
 
             {/* Cart notification toast */}
             {showCartNotification && (
-                <div className="fixed top-4 ltr:right-4 bg-[#E11D00] border-2 border-stone-950 text-white px-6 py-3 font-semibold rounded-md z-50 shadow-2xl text-sm animate-in slide-in-from-top-2 fade-in duration-300">
+                <div className="fixed top-4 ltr:right-4 text-black px-6 py-3 font-semibold rounded-md z-50 shadow-2xl text-sm animate-in slide-in-from-top-2 fade-in duration-300">
                     ✓ Added to Cart
                 </div>
             )}

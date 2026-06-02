@@ -59,23 +59,35 @@ const LIST_SELECT_LIGHT = [
     'created_at',
 ].join(', ');
 
+/** Same as light select but includes the full images array (for hover previews etc.) */
+const LIST_SELECT_WITH_IMAGES = [
+    'id', 'slug', 'name', 'price', 'original_price', 'discount',
+    'main_image', 'images', 'variants', 'stock', 'sizes', 'is_active', 'is_featured',
+    'order',
+    'show_out_of_stock_badge', 'show_preorder_badge', 'categories',
+    'created_at',
+].join(', ');
+
 /**
  * Fetch paginated active products for the storefront.
+ * Pass `includeImages: true` when you need the full images array (e.g. homepage hover previews).
  */
 export async function getActiveProducts(options: {
     page?: number;
     limit?: number;
     sort?: 'newest' | 'price-asc' | 'price-desc' | 'custom';
     featuredOnly?: boolean;
+    includeImages?: boolean;
 } = {}): Promise<{ products: ProductListItem[]; total: number }> {
     const page = options.page ?? 1;
     const limit = Math.min(options.limit ?? 20, 100);
     const from = (page - 1) * limit;
     const to = from + limit - 1;
+    const selectStr = options.includeImages ? LIST_SELECT_WITH_IMAGES : LIST_SELECT_LIGHT;
 
     let query = supabaseAdmin
         .from('products')
-        .select(LIST_SELECT_LIGHT, { count: 'exact' })
+        .select(selectStr, { count: 'exact' })
         .eq('is_active', true)
         .range(from, to);
 
