@@ -21,7 +21,7 @@ export type OrderStatus =
 export type PaymentMethod = 'cashOnDelivery' | 'instaPay';
 export type PaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded';
 export type DiscountType = 'percentage' | 'fixed';
-export type DefaultCurrency = 'EGP' | 'SAR' | 'AED';
+export type DefaultCurrency = 'EGP' | 'SAR' | 'AED' | 'USD';
 
 // ─── JSONB sub-shapes (stored as jsonb columns in Postgres) ──────────────────
 

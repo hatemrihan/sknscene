@@ -73,7 +73,7 @@ export async function createOrder(input: CreateOrderInput): Promise<Order> {
             shipping_cost: input.shippingCost,
             cod_fee: input.codFee ?? 0,
             total: input.totalAmount,
-            currency: 'EGP',
+            currency: 'USD',
             status: input.status ?? 'pending',
             payment_status: input.paymentStatus ?? 'pending',
             payment_method: input.paymentMethod,

@@ -232,6 +232,28 @@ export default function ProductsPage() {
                                         <span className="text-[11px] text-stone-500 mt-1 block">{product.categories[0]}</span>
                                     )}
                                 </div>
+
+                                {/* Action buttons — always visible (critical for mobile/touch) */}
+                                <div className="px-4 pb-3.5 flex gap-2">
+                                    <Button
+                                        asChild
+                                        variant="ghost"
+                                        className="flex-1 h-8 text-[12px] font-medium rounded-lg bg-stone-700/50 text-stone-300 hover:bg-stone-700 hover:text-white gap-1.5"
+                                    >
+                                        <Link href={`/admin/product/edit-product/${product.id}`}>
+                                            <Pencil className="h-3 w-3" />
+                                            Edit
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => setDeleteProduct(product)}
+                                        className="flex-1 h-8 text-[12px] font-medium rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 gap-1.5"
+                                    >
+                                        <Trash2 className="h-3 w-3" />
+                                        Delete
+                                    </Button>
+                                </div>
                             </div>
                         ))}
                     </div>
