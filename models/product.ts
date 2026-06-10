@@ -115,17 +115,22 @@ export async function getAllProductsAdmin(options: {
     limit?: number;
     sort?: 'newest' | 'custom';
 } = {}): Promise<{ products: Product[]; total: number }> {
-    const page = options.page ?? 1;
-    const limit = Math.min(options.limit ?? 50, 100);
-    const from = (page - 1) * limit;
-    const to = from + limit - 1;
     const sort = options.sort || 'newest';
 
-    const { data, error, count } = await supabaseAdmin
+    let query = supabaseAdmin
         .from('products')
         .select('*', { count: 'exact' })
-        .order(sort === 'custom' ? 'order' : 'created_at', { ascending: sort === 'custom' })
-        .range(from, to);
+        .order(sort === 'custom' ? 'order' : 'created_at', { ascending: sort === 'custom' });
+
+    if (options.page !== undefined || options.limit !== undefined) {
+        const page = options.page ?? 1;
+        const limit = options.limit ?? 50;
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+        query = query.range(from, to);
+    }
+
+    const { data, error, count } = await query;
 
     if (error) throw new Error(`Failed to fetch products: ${error.message}`);
     return { products: (data as Product[]) ?? [], total: count ?? 0 };

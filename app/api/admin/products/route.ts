@@ -27,9 +27,12 @@ export async function GET(request: NextRequest) {
         }
 
         const { searchParams } = new URL(request.url);
-        const page = parseInt(searchParams.get('page') || '1', 10);
-        const limit = parseInt(searchParams.get('limit') || '20', 10);
+        const pageParam = searchParams.get('page');
+        const limitParam = searchParams.get('limit');
         const sort = searchParams.get('sort') === 'custom' ? 'custom' : 'newest';
+
+        const page = pageParam ? parseInt(pageParam, 10) : undefined;
+        const limit = limitParam ? parseInt(limitParam, 10) : undefined;
 
         const { products, total } = await getAllProductsAdmin({ page, limit, sort });
 
@@ -37,12 +40,12 @@ export async function GET(request: NextRequest) {
             success: true,
             products,
             pagination: {
-                page,
-                limit,
+                page: page ?? 1,
+                limit: limit ?? total,
                 total,
-                pages: Math.ceil(total / limit),
-                hasNext: page * limit < total,
-                hasPrev: page > 1
+                pages: limit ? Math.ceil(total / limit) : 1,
+                hasNext: limit ? (page ?? 1) * limit < total : false,
+                hasPrev: limit ? (page ?? 1) > 1 : false
             }
         };
 
