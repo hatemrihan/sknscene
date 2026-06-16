@@ -94,7 +94,7 @@ function ShopClientInner() {
     const pageTitle = urlCategory || "Shop";
 
     return (
-        <section className="min-h-screen bg-[#F5F2EB]">
+        <section className="min-h-screen bg-[#EEDDCF]">
             <Nav />
             <div className="pt-24 pb-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,7 +148,7 @@ function ShopClientInner() {
 export function ShopClient() {
     return (
         <Suspense fallback={
-             <section className="min-h-screen bg-[#F5F2EB]">
+             <section className="min-h-screen bg-[#EEDDCF]">
                 <Nav />
                 <div className="pt-24 pb-16 flex justify-center items-center">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E11D00]" />

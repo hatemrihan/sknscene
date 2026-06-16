@@ -2,9 +2,7 @@ import { Metadata } from 'next';
 import Nav from './sections/nav';
 import Header from './sections/header';
 import Categories from './sections/categories';
-import Featured from './sections/featured';
 import Products from './sections/products';
-import Explore from './sections/explore';
 import Footer from './sections/footer';
 
 const BASE_URL = 'https://sknscene.netlify.app';
@@ -62,9 +60,7 @@ export default function Home() {
             <Nav />
             <Header />
             <Categories />
-            <Featured />
             <Products />
-            <Explore />
             <Footer />
         </>
     );

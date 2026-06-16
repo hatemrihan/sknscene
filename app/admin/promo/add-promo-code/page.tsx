@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { DatePicker } from '@/components/ui/date-picker';
-import { SideBarNav } from '@/app/admin/sections/SideBarNav';
-import { MobileNav } from '@/app/admin/sections/MobileNav';
 
 interface PromoCode {
     code: string;
@@ -142,13 +140,7 @@ export default function AddPromoCodePage() {
     };
 
     return (
-        <>
-            <div className="hidden lg:block">
-                <SideBarNav />
-            </div>
-            <MobileNav />
-
-            <div className="lg:ml-64 bg-stone-900 text-stone-100 min-h-screen">
+        <div className="bg-stone-900 text-stone-100 min-h-screen">
                 {/* Header Area */}
                 <div className="border-b border-stone-800 bg-stone-900/80 backdrop-blur-md sticky top-0 lg:top-0 z-30 pt-16 lg:pt-4">
                     <div className="px-6 pb-4 max-w-[1400px] mx-auto flex flex-col gap-1.5">
@@ -329,6 +321,5 @@ export default function AddPromoCodePage() {
                     <div className="hidden lg:block w-56 shrink-0" />
                 </div>
             </div>
-        </>
     );
 }

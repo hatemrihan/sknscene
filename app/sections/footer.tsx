@@ -55,7 +55,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="w-full bg-[#ECE8DA] text-[#3D2314] py-20 px-6 lg:px-12 border-t border-[#3D2314]/20 font-sans text-[13px] tracking-tight" dir="ltr">
+        <footer className="w-full bg-[#EEDDCF] text-[#3D2314] py-20 px-6 lg:px-12 border-t border-[#3D2314]/20 font-sans text-[13px] tracking-tight" dir="ltr">
             <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
                 {/* ── LEFT SIDE (lg:col-span-7) ── */}
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-12">

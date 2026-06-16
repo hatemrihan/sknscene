@@ -40,7 +40,7 @@ export default function Categories() {
     // ── Skeleton loader ──────────────────────────────────────
     if (loading) {
         return (
-            <section className="relative z-10 w-full py-16 md:py-24 overflow-hidden bg-[#F5F2EB]">
+            <section className="relative z-10 w-full py-16 md:py-24 overflow-hidden bg-[#EEDDCF]">
                 <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
                     <div className="flex items-center gap-6 mb-10">
                         <div className="h-3 w-8 bg-black/10 rounded animate-pulse" />
@@ -62,7 +62,7 @@ export default function Categories() {
     if (categories.length === 0) return null;
 
     return (
-        <section className="relative z-10 w-full py-16 md:py-24 overflow-hidden bg-[#F5F2EB]" dir="ltr">
+        <section className="relative z-10 w-full py-16 md:py-24 overflow-hidden bg-[#EEDDCF]" dir="ltr">
             <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div className="flex items-start gap-6 mb-10">
                     <div>

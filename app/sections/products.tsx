@@ -25,7 +25,7 @@ export default async function Products() {
     if (products.length === 0) return null;
 
     return (
-        <section className="relative z-10 w-full py-16 md:py-24 bg-[#F5F2EB]" dir="ltr">
+        <section className="relative z-10 w-full py-16 md:py-24 bg-[#EEDDCF]" dir="ltr">
             <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
                 {/* ── Section header ──────────────────────────────── */}
                 <div className="flex items-center justify-center gap-6 mb-10 text-center">

@@ -274,127 +274,129 @@ export default function GovernoratePricingPage() {
 
             {/* ── Table ───────────────────────────────────── */}
             <div className="bg-stone-800/30 border border-stone-800/50 rounded-xl overflow-hidden">
-                <table className="w-full">
-                    <thead>
-                        <tr className="border-b border-stone-800/60">
-                            <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider w-8">
-                                #
-                            </th>
-                            <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
-                                Governorate
-                            </th>
-                            <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
-                                Shipping Cost (USD)
-                            </th>
-                            <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
-                                COD Fee (USD)
-                            </th>
-                            <th className="text-center px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {pricing.map((row, index) => {
-                            const govData = EGYPT_GOVERNORATES.find(g => g.name === row.governorate);
-                            const isEdited = editedRows.has(row.governorate);
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead>
+                            <tr className="border-b border-stone-800/60">
+                                <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider w-8">
+                                    #
+                                </th>
+                                <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
+                                    Governorate
+                                </th>
+                                <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
+                                    Shipping Cost (USD)
+                                </th>
+                                <th className="text-left px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
+                                    COD Fee (USD)
+                                </th>
+                                <th className="text-center px-5 py-3 text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {pricing.map((row, index) => {
+                                const govData = EGYPT_GOVERNORATES.find(g => g.name === row.governorate);
+                                const isEdited = editedRows.has(row.governorate);
 
-                            return (
-                                <tr
-                                    key={row.governorate}
-                                    className={`border-b border-stone-800/30 transition-colors ${isEdited ? 'bg-amber-500/5' : 'hover:bg-stone-800/20'
-                                        }`}
-                                >
-                                    {/* Index */}
-                                    <td className="px-5 py-3">
-                                        <span className="text-[11px] text-stone-600 font-mono">
-                                            {(index + 1).toString().padStart(2, '0')}
-                                        </span>
-                                    </td>
+                                return (
+                                    <tr
+                                        key={row.governorate}
+                                        className={`border-b border-stone-800/30 transition-colors ${isEdited ? 'bg-amber-500/5' : 'hover:bg-stone-800/20'
+                                            }`}
+                                    >
+                                        {/* Index */}
+                                        <td className="px-5 py-3">
+                                            <span className="text-[11px] text-stone-600 font-mono">
+                                                {(index + 1).toString().padStart(2, '0')}
+                                            </span>
+                                        </td>
 
-                                    {/* Governorate Name */}
-                                    <td className="px-5 py-3">
-                                        <div className="flex items-center gap-3">
-                                            <div className={`w-2 h-2 rounded-full shrink-0 ${row.is_active ? 'bg-green-400' : 'bg-stone-600'
-                                                }`} />
-                                            <div>
-                                                <p className="text-[13px] font-medium text-white">
-                                                    {row.governorate}
-                                                </p>
-                                                <p className="text-[11px] text-stone-500">
-                                                    {govData?.nameEn}
-                                                </p>
+                                        {/* Governorate Name */}
+                                        <td className="px-5 py-3">
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-2 h-2 rounded-full shrink-0 ${row.is_active ? 'bg-green-400' : 'bg-stone-600'
+                                                    }`} />
+                                                <div>
+                                                    <p className="text-[13px] font-medium text-white">
+                                                        {row.governorate}
+                                                    </p>
+                                                    <p className="text-[11px] text-stone-500">
+                                                        {govData?.nameEn}
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
 
-                                    {/* Shipping Cost */}
-                                    <td className="px-5 py-3">
-                                        <div className="relative w-28">
-                                            <input
-                                                type="number"
-                                                value={row.shipping_cost || ''}
-                                                onChange={(e) => updateRow(
+                                        {/* Shipping Cost */}
+                                        <td className="px-5 py-3">
+                                            <div className="relative w-28">
+                                                <input
+                                                    type="number"
+                                                    value={row.shipping_cost || ''}
+                                                    onChange={(e) => updateRow(
+                                                        row.governorate,
+                                                        'shipping_cost',
+                                                        parseFloat(e.target.value) || 0,
+                                                    )}
+                                                    placeholder="0"
+                                                    min="0"
+                                                    className="w-full px-3 py-1.5 bg-stone-800/60 border border-stone-700 rounded-md text-[13px] text-white focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500 placeholder:text-stone-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                                />
+                                            </div>
+                                        </td>
+
+                                        {/* COD Fee */}
+                                        <td className="px-5 py-3">
+                                            <div className="relative w-28">
+                                                <input
+                                                    type="number"
+                                                    value={row.cod_fee || ''}
+                                                    onChange={(e) => updateRow(
+                                                        row.governorate,
+                                                        'cod_fee',
+                                                        parseFloat(e.target.value) || 0,
+                                                    )}
+                                                    placeholder="0"
+                                                    min="0"
+                                                    className="w-full px-3 py-1.5 bg-stone-800/60 border border-stone-700 rounded-md text-[13px] text-white focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500 placeholder:text-stone-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                                />
+                                            </div>
+                                        </td>
+
+                                        {/* Active toggle */}
+                                        <td className="px-5 py-3 text-center">
+                                            <button
+                                                onClick={() => updateRow(
                                                     row.governorate,
-                                                    'shipping_cost',
-                                                    parseFloat(e.target.value) || 0,
+                                                    'is_active',
+                                                    !row.is_active,
                                                 )}
-                                                placeholder="0"
-                                                min="0"
-                                                className="w-full px-3 py-1.5 bg-stone-800/60 border border-stone-700 rounded-md text-[13px] text-white focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500 placeholder:text-stone-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                            />
-                                        </div>
-                                    </td>
-
-                                    {/* COD Fee */}
-                                    <td className="px-5 py-3">
-                                        <div className="relative w-28">
-                                            <input
-                                                type="number"
-                                                value={row.cod_fee || ''}
-                                                onChange={(e) => updateRow(
-                                                    row.governorate,
-                                                    'cod_fee',
-                                                    parseFloat(e.target.value) || 0,
+                                                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors cursor-pointer border ${row.is_active
+                                                    ? 'bg-green-500/10 text-green-400 border-green-500/20 hover:bg-green-500/20'
+                                                    : 'bg-stone-800 text-stone-500 border-stone-700 hover:bg-stone-700'
+                                                    }`}
+                                            >
+                                                {row.is_active ? (
+                                                    <>
+                                                        <CheckCircle2 className="h-3 w-3" />
+                                                        Active
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <AlertCircle className="h-3 w-3" />
+                                                        Inactive
+                                                    </>
                                                 )}
-                                                placeholder="0"
-                                                min="0"
-                                                className="w-full px-3 py-1.5 bg-stone-800/60 border border-stone-700 rounded-md text-[13px] text-white focus:border-stone-500 focus:outline-none focus:ring-1 focus:ring-stone-500 placeholder:text-stone-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                            />
-                                        </div>
-                                    </td>
-
-                                    {/* Active toggle */}
-                                    <td className="px-5 py-3 text-center">
-                                        <button
-                                            onClick={() => updateRow(
-                                                row.governorate,
-                                                'is_active',
-                                                !row.is_active,
-                                            )}
-                                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors cursor-pointer border ${row.is_active
-                                                ? 'bg-green-500/10 text-green-400 border-green-500/20 hover:bg-green-500/20'
-                                                : 'bg-stone-800 text-stone-500 border-stone-700 hover:bg-stone-700'
-                                                }`}
-                                        >
-                                            {row.is_active ? (
-                                                <>
-                                                    <CheckCircle2 className="h-3 w-3" />
-                                                    Active
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <AlertCircle className="h-3 w-3" />
-                                                    Inactive
-                                                </>
-                                            )}
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             {/* ── Info ─────────────────────────────────────── */}

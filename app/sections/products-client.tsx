@@ -34,14 +34,15 @@ const ProductCardHome = memo(function ProductCardHome({ product, priority = fals
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* ── Image ─────────────────────────────── */}
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#ECE8DA]/35 mb-3 flex items-center justify-center rounded-lg border border-stone-200/40">
+            <div className="relative w-full overflow-hidden mb-3 flex items-center justify-center">
                 {displayImage ? (
                     <Image
                         src={displayImage}
                         alt={product.name}
-                        fill
+                        width={600}
+                        height={600}
                         sizes="(max-width: 640px) 60vw, (max-width: 768px) 40vw, 25vw"
-                        className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] p-4"
+                        className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] w-full h-auto"
                         priority={priority}
                         quality={85}
                     />

@@ -643,16 +643,25 @@ export default function OrdersPage() {
                             <Table>
                                 <TableHeader>
                                     <TableRow className="border-stone-800/60 hover:bg-transparent">
-                                        {[
-                                            'Order', 'Date', 'Customer', 'Phone', 'Email',
-                                            'Governorate', 'City', 'Address', 'Location',
-                                            'Items', 'Subtotal', 'Shipping', 'COD Fee', 'Total',
-                                            'Payment', 'Pay Status', 'Notes', 'Status', '',
-                                        ].map(h => (
-                                            <TableHead key={h} className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">
-                                                {h}
-                                            </TableHead>
-                                        ))}
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">Order</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden sm:table-cell">Date</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">Customer</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden lg:table-cell">Phone</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden lg:table-cell">Email</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden lg:table-cell">Governorate</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden lg:table-cell">City</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden xl:table-cell">Address</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden xl:table-cell">Location</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">Items</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden md:table-cell">Subtotal</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden md:table-cell">Shipping</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden md:table-cell">COD Fee</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">Total</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden sm:table-cell">Payment</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden lg:table-cell">Pay Status</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap hidden xl:table-cell">Notes</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap">Status</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 whitespace-nowrap text-right w-10"></TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -665,7 +674,7 @@ export default function OrdersPage() {
                                             <TableCell className="px-5 py-3 text-[13px] text-stone-300 font-mono whitespace-nowrap">
                                                 #{order.order_number}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-[12px] text-stone-500 tabular-nums whitespace-nowrap">
+                                            <TableCell className="px-5 py-3 text-[12px] text-stone-500 tabular-nums whitespace-nowrap hidden sm:table-cell">
                                                 {new Date(order.created_at).toLocaleDateString('en-GB', {
                                                     day: '2-digit', month: 'short', year: 'numeric',
                                                 })}
@@ -673,22 +682,22 @@ export default function OrdersPage() {
                                             <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-200">
                                                 {order.customer_name}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400">
+                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 hidden lg:table-cell">
                                                 {order.customer_phone || '-'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400">
+                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 hidden lg:table-cell">
                                                 {order.customer_email || '-'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 whitespace-nowrap">
+                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 whitespace-nowrap hidden lg:table-cell">
                                                 {order.governorate || '-'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 whitespace-nowrap">
+                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 whitespace-nowrap hidden lg:table-cell">
                                                 {order.shipping_address?.city || '-'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 min-w-[200px]">
+                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 min-w-[200px] hidden xl:table-cell">
                                                 {order.shipping_address?.address || '-'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px]">
+                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] hidden xl:table-cell">
                                                 {order.shipping_address?.lat && order.shipping_address?.lng ? (
                                                     <a
                                                         href={`https://www.google.com/maps?q=${order.shipping_address.lat},${order.shipping_address.lng}`}
@@ -701,7 +710,7 @@ export default function OrdersPage() {
                                                 ) : '-'}
                                             </TableCell>
 
-                                            {/* ── Items column — the key improvement ── */}
+                                            {/* ── Items column ── */}
                                             <TableCell className="px-5 py-3 min-w-[260px]">
                                                 <div className="flex flex-col gap-1.5">
                                                     {(order.items ?? []).map((item, i) => {
@@ -730,25 +739,25 @@ export default function OrdersPage() {
                                                 </div>
                                             </TableCell>
 
-                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums">
+                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums hidden md:table-cell">
                                                 {(order.subtotal ?? 0).toLocaleString()}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums">
+                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums hidden md:table-cell">
                                                 {(order.shipping_cost ?? 0).toLocaleString()}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums">
+                                            <TableCell className="px-5 py-3 text-right text-[13px] text-stone-400 tabular-nums hidden md:table-cell">
                                                 {(order.cod_fee ?? 0).toLocaleString()}
                                             </TableCell>
                                             <TableCell className="px-5 py-3 text-right text-[13px] font-semibold text-white tabular-nums whitespace-nowrap">
                                                 {order.total.toLocaleString()} {order.currency}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 capitalize">
+                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 capitalize hidden sm:table-cell">
                                                 {order.payment_method === 'cashOnDelivery' ? 'COD' : 'InstaPay'}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 capitalize">
+                                            <TableCell className="px-5 py-3 whitespace-nowrap text-[13px] text-stone-400 capitalize hidden lg:table-cell">
                                                 {order.payment_status}
                                             </TableCell>
-                                            <TableCell className="px-5 py-3 text-[12px] text-stone-400">
+                                            <TableCell className="px-5 py-3 text-[12px] text-stone-400 hidden xl:table-cell">
                                                 {renderNotesWithLinks(order.notes)}
                                             </TableCell>
 

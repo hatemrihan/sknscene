@@ -338,7 +338,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
 
     if (!product) {
         return (
-            <div className="min-h-screen bg-[#F5F2EB] flex items-center justify-center">
+            <div className="min-h-screen bg-[#EEDDCF] flex items-center justify-center">
                 <div className="text-center">
                     <h2 className="text-xl font-bold text-stone-950 font-sans mb-4">Product not found</h2>
                     <Link
@@ -355,7 +355,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
     // ── Render ───────────────────────────────────────────────────
     return (
         <>
-            <div className="min-h-screen bg-[#F5F2EB]">
+            <div className="min-h-screen bg-[#EEDDCF]">
                 <Nav />
 
                 <div className="pt-20">
@@ -670,7 +670,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                             href={`/shop/${rp.slug}`}
                                             className="cursor-pointer group block focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none rounded-lg p-1 transition-all"
                                         >
-                                            <div className="mb-4 overflow-hidden flex items-center justify-center aspect-[3/4] bg-[#ECE8DA]/35 border border-stone-200/40 rounded-lg">
+                                            <div className="mb-4 overflow-hidden flex items-center justify-center">
                                                 {rp.main_image ? (
                                                     <Image
                                                         src={rp.main_image}
@@ -679,7 +679,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                                         height={800}
                                                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 300px"
                                                         unoptimized={rp.main_image.startsWith('blob:')}
-                                                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                                                        className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center text-stone-400">

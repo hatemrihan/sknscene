@@ -51,7 +51,7 @@ export const ProductCard = memo(function ProductCard({ product, lowStockThreshol
             className="group block focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 focus-visible:outline-none rounded-lg p-1 transition-all"
         >
             {/* ── Image ────────────────────────────────────────── */}
-            <div className="relative mb-4 aspect-[3/4] overflow-hidden flex items-center justify-center bg-[#ECE8DA]/35 rounded-lg border border-stone-200/40">
+            <div className="relative mb-4 overflow-hidden flex items-center justify-center">
                 {/* Status badge */}
                 {status && (
                     <div className="absolute top-3 right-3 z-10">
@@ -79,9 +79,10 @@ export const ProductCard = memo(function ProductCard({ product, lowStockThreshol
                     <Image
                         src={product.main_image}
                         alt={product.name}
-                        fill
+                        width={600}
+                        height={600}
                         unoptimized={product.main_image.startsWith('blob:')}
-                        className="object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                        className="object-contain group-hover:scale-105 transition-transform duration-500 w-full h-auto"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         priority={priority}
                         quality={85}

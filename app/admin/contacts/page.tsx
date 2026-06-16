@@ -189,46 +189,47 @@ export default function AdminContactsPage() {
 
                     {/* Table */}
                     <div className="bg-stone-800/30 border border-stone-800/60 rounded-xl overflow-hidden">
-                        <Table>
-                            <TableHeader>
-                                <TableRow className="border-stone-800/60 hover:bg-transparent">
-                                    <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Status</TableHead>
-                                    <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Name</TableHead>
-                                    <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Email</TableHead>
-                                    <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Date</TableHead>
-                                    <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 text-right w-10"></TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredContacts.map((contact) => {
-                                    const activeId = contact.id || contact._id || '';
-                                    return (
-                                        <TableRow key={activeId} className="border-stone-800/60 hover:bg-stone-800/30 transition-colors">
-                                            <TableCell className="px-5 py-3">
-                                                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium border capitalize
-                                                    ${contact.status === 'pending' ? 'bg-yellow-500/15 text-yellow-400 border-yellow-500/20' : ''}
-                                                    ${contact.status === 'responded' ? 'bg-green-500/15 text-green-400 border-green-500/20' : ''}
-                                                    ${contact.status === 'archived' ? 'bg-stone-700/50 text-stone-400 border-stone-700' : ''}
-                                                `}>
-                                                    {contact.status === 'pending' && <Clock className="w-3 h-3 mr-1" />}
-                                                    {contact.status === 'responded' && <CheckCircle className="w-3 h-3 mr-1" />}
-                                                    {contact.status}
-                                                </span>
-                                            </TableCell>
-                                            <TableCell className="px-5 py-3">
-                                                <div className="flex items-center gap-2 text-[13px] text-stone-200">
-                                                    <User className="h-3.5 w-3.5 text-stone-500" />
-                                                    {contact.name}
-                                                </div>
-                                            </TableCell>
-                                            <TableCell className="px-5 py-3 text-[13px] text-stone-400 lowercase">
-                                                {contact.email}
-                                            </TableCell>
-                                            <TableCell className="px-5 py-3 text-[12px] text-stone-500 tabular-nums whitespace-nowrap">
-                                                {new Date(contact.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}
-                                            </TableCell>
-                                            <TableCell className="px-5 py-3 text-right">
-                                                <DropdownMenu>
+                        <div className="overflow-x-auto">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="border-stone-800/60 hover:bg-transparent">
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Status</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3">Name</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 hidden md:table-cell">Email</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 hidden md:table-cell">Date</TableHead>
+                                        <TableHead className="text-[11px] text-stone-500 uppercase tracking-wider font-medium px-5 py-3 text-right w-10"></TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {filteredContacts.map((contact) => {
+                                        const activeId = contact.id || contact._id || '';
+                                        return (
+                                            <TableRow key={activeId} className="border-stone-800/60 hover:bg-stone-800/30 transition-colors">
+                                                <TableCell className="px-5 py-3">
+                                                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium border capitalize
+                                                        ${contact.status === 'pending' ? 'bg-yellow-500/15 text-yellow-400 border-yellow-500/20' : ''}
+                                                        ${contact.status === 'responded' ? 'bg-green-500/15 text-green-400 border-green-500/20' : ''}
+                                                        ${contact.status === 'archived' ? 'bg-stone-700/50 text-stone-400 border-stone-700' : ''}
+                                                    `}>
+                                                        {contact.status === 'pending' && <Clock className="w-3 h-3 mr-1" />}
+                                                        {contact.status === 'responded' && <CheckCircle className="w-3 h-3 mr-1" />}
+                                                        {contact.status}
+                                                    </span>
+                                                </TableCell>
+                                                <TableCell className="px-5 py-3">
+                                                    <div className="flex items-center gap-2 text-[13px] text-stone-200">
+                                                        <User className="h-3.5 w-3.5 text-stone-500" />
+                                                        {contact.name}
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell className="px-5 py-3 text-[13px] text-stone-400 lowercase hidden md:table-cell">
+                                                    {contact.email}
+                                                </TableCell>
+                                                <TableCell className="px-5 py-3 text-[12px] text-stone-500 tabular-nums whitespace-nowrap hidden md:table-cell">
+                                                    {new Date(contact.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}
+                                                </TableCell>
+                                                <TableCell className="px-5 py-3 text-right">
+                                                    <DropdownMenu>
                                                     <DropdownMenuTrigger asChild>
                                                         <Button variant="ghost" className="h-7 w-7 p-0 hover:bg-stone-800 text-stone-500 hover:text-white">
                                                             <MoreHorizontal className="h-3.5 w-3.5" />
@@ -276,6 +277,7 @@ export default function AdminContactsPage() {
                                 )}
                             </TableBody>
                         </Table>
+                    </div>
                     </div>
                     <div className="py-3 text-[12px] text-stone-500">
                         {filteredContacts.length} contacts

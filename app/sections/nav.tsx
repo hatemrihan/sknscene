@@ -180,18 +180,26 @@ export default function Nav() {
         };
     }, [menuOpen]);
 
+    const isHome = pathname === '/';
+    const showNavBackground = scrolled || !isHome;
+    const showMobileBg = (scrolled || menuOpen || !isHome) && !searchOpen;
+
     return (
         <>
             {/* ━━━ DESKTOP NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
             <nav
                 className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-transparent pointer-events-none
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out pointer-events-none
           ${isMobile ? 'opacity-0 h-0 overflow-hidden' : ''}
+          bg-transparent
         `}
                 aria-label="Main navigation"
                 id="desktop-nav"
             >
-                <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[140px] px-8 lg:px-12 pointer-events-none">
+                <div className={`
+                    max-w-[1440px] mx-auto flex items-center justify-between transition-all duration-500 ease-out px-8 lg:px-12 pointer-events-none
+                    ${showNavBackground ? 'h-[80px]' : 'h-[140px]'}
+                `}>
                     {/* ── Logo ────────────────────────────────────────── */}
                     <Link
                         href={'/'}
@@ -203,7 +211,9 @@ export default function Nav() {
                             alt="Sknscene Logo"
                             width={1500}
                             height={600}
-                            className="h-[120px] w-auto object-contain"
+                            className={`w-auto object-contain transition-all duration-500 ease-out select-none ${
+                                showNavBackground ? 'h-[50px]' : 'h-[90px]'
+                            }`}
                             draggable={false}
                         />
                     </Link>
@@ -215,17 +225,14 @@ export default function Nav() {
                                 <Link
                                     href={item.href}
                                     className={`
-                    relative px-4 py-2 text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-200
-                    ${isActive(item.href)
-                                            ? 'text-foreground'
-                                            : 'text-muted-foreground hover:text-foreground'
-                                        }
+                    relative px-4 py-2 text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300
+                    ${isActive(item.href) ? 'text-foreground font-semibold' : 'text-muted-foreground hover:text-foreground'}
                   `}
                                 >
                                     {item.label}
                                     {/* Active indicator underline */}
                                     {isActive(item.href) && (
-                                        <span className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-foreground" />
+                                        <span className="absolute bottom-0 left-4 right-4 h-[1.5px] transition-colors duration-300 bg-foreground" />
                                     )}
                                 </Link>
                             </li>
@@ -240,7 +247,9 @@ export default function Nav() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={() => setSearchOpen(!searchOpen)}
-                                className={`rounded-full w-10 h-10 transition-colors ${searchOpen ? 'text-foreground bg-accent' : 'text-muted-foreground hover:text-foreground'}`}
+                                className={`rounded-full w-10 h-10 transition-colors duration-300 ${
+                                    searchOpen ? 'text-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-accent/40'
+                                }`}
                                 aria-label="Search"
                             >
                                 <Search className="w-[18px] h-[18px]" strokeWidth={1.5} />
@@ -342,23 +351,14 @@ export default function Nav() {
                             )}
                         </div>
 
-                        {/* <Button
-                            variant="ghost"
-                            size="icon"
-                            className="rounded-full w-10 h-10 text-muted-foreground hover:text-foreground transition-colors"
-                            aria-label="Account"
-                        >
-                            <User className="w-[18px] h-[18px]" strokeWidth={1.5} />
-                        </Button> */}
-
                         <Link
                             href={`/cart`}
-                            className="relative flex items-center justify-center rounded-full w-10 h-10 text-muted-foreground hover:text-foreground transition-colors"
+                            className="relative flex items-center justify-center rounded-full w-10 h-10 transition-colors duration-300 text-muted-foreground hover:text-foreground hover:bg-accent/40"
                             aria-label={`Cart with ${totalItems} items`}
                         >
                             <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />
                             {totalItems > 0 && (
-                                <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-foreground text-background text-[10px] font-semibold leading-none">
+                                <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-semibold leading-none transition-colors duration-300 bg-foreground text-background">
                                     {totalItems}
                                 </span>
                             )}
@@ -374,17 +374,14 @@ export default function Nav() {
                     <div
                         className={`
                             flex items-center justify-between px-5 h-[80px] transition-all duration-300 relative z-[60]
-                            ${(scrolled || menuOpen) && !searchOpen
-                                ? 'bg-background/80 backdrop-blur-md border-b border-border/40'
-                                : 'bg-transparent border-b border-transparent'
-                            }
+                            bg-transparent border-b border-transparent
                         `}
                     >
                         {/* Hamburger button on the left */}
                         <div className="flex-1 flex justify-start">
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
-                                className="flex items-center justify-center w-10 h-10 rounded-full transition-colors text-foreground relative z-[60]"
+                                className="flex items-center justify-center w-10 h-10 rounded-full transition-colors relative z-[60] text-foreground hover:bg-accent/40"
                                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                             >
                                 {menuOpen ? (
@@ -411,7 +408,7 @@ export default function Nav() {
                                 alt="Sknscene Logo"
                                 width={300}
                                 height={120}
-                                className="h-[70px] w-auto object-contain select-none"
+                                className="h-[50px] md:h-[55px] w-auto object-contain select-none transition-all duration-300"
                                 draggable={false}
                             />
                         </Link>
@@ -423,7 +420,7 @@ export default function Nav() {
                                 <button
                                     ref={mobileBtnRef}
                                     onClick={() => setSearchOpen(true)}
-                                    className="flex items-center justify-center w-9 h-9 rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                                    className="flex items-center justify-center w-9 h-9 rounded-full transition-colors text-muted-foreground hover:text-foreground hover:bg-accent/40"
                                     aria-label="Search"
                                 >
                                     <Search className="w-[18px] h-[18px]" strokeWidth={1.5} />
@@ -434,12 +431,12 @@ export default function Nav() {
                             <Link
                                 href="/cart"
                                 onClick={() => setMenuOpen(false)}
-                                className="relative flex items-center justify-center w-9 h-9 rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                                className="relative flex items-center justify-center w-9 h-9 rounded-full transition-colors text-muted-foreground hover:text-foreground hover:bg-accent/40"
                                 aria-label={`Cart with ${totalItems} items`}
                             >
                                 <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />
                                 {totalItems > 0 && (
-                                    <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[16px] h-[16px] px-0.5 rounded-full bg-foreground text-background text-[9px] font-semibold leading-none">
+                                    <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center min-w-[16px] h-[16px] px-0.5 rounded-full text-[9px] font-semibold leading-none transition-colors duration-300 bg-foreground text-background">
                                         {totalItems}
                                     </span>
                                 )}

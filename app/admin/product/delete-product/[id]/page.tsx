@@ -16,8 +16,6 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import type { Product } from '@/models/product';
-import { SideBarNav } from '@/app/admin/sections/SideBarNav';
-import { MobileNav } from '@/app/admin/sections/MobileNav';
 
 const DeleteProductPage = () => {
     const router = useRouter();
@@ -90,52 +88,41 @@ const DeleteProductPage = () => {
     // Loading state
     if (loading) {
         return (
-            <>
-                <div className="hidden lg:block"><SideBarNav /></div>
-                <MobileNav />
-                <div className="lg:ml-64 pt-16 lg:pt-0 min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
-                    <div className="w-full">
-                        <div className="flex items-center justify-center min-h-[300px] sm:min-h-[350px]">
-                            <div className="text-center">
-                                <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-stone-500 mx-auto mb-3 sm:mb-4"></div>
-                                <p className="text-stone-400 text-sm sm:text-base">Loading product data...</p>
-                            </div>
+            <div className="min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
+                <div className="w-full">
+                    <div className="flex items-center justify-center min-h-[300px] sm:min-h-[350px]">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-stone-500 mx-auto mb-3 sm:mb-4"></div>
+                            <p className="text-stone-400 text-sm sm:text-base">Loading product data...</p>
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 
     if (!product) {
         return (
-            <>
-                <div className="hidden lg:block"><SideBarNav /></div>
-                <MobileNav />
-                <div className="lg:ml-64 pt-16 lg:pt-0 min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
-                    <div className="w-full">
-                        <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
-                            <div className="text-center">
-                                <p className="text-stone-400 text-sm sm:text-base mb-3 sm:mb-4">Product not found</p>
-                                <button
-                                    onClick={() => router.back()}
-                                    className="bg-white text-stone-900 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-stone-200 transition-all duration-300 text-sm sm:text-base"
-                                >
-                                    ← Back to Products
-                                </button>
-                            </div>
+            <div className="min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
+                <div className="w-full">
+                    <div className="flex items-center justify-center min-h-[300px] sm:min-h-[400px]">
+                        <div className="text-center">
+                            <p className="text-stone-400 text-sm sm:text-base mb-3 sm:mb-4">Product not found</p>
+                            <button
+                                onClick={() => router.back()}
+                                className="bg-white text-stone-900 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-stone-200 transition-all duration-300 text-sm sm:text-base"
+                            >
+                                ← Back to Products
+                            </button>
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 
     return (
-        <>
-            <div className="hidden lg:block"><SideBarNav /></div>
-            <MobileNav />
-            <div className="lg:ml-64 pt-16 lg:pt-0 min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
+        <div className="min-h-screen bg-stone-900 text-stone-100 p-2 md:p-4">
                 <div className="w-full max-w-4xl mx-auto py-8 lg:py-12">
                     {/* Header */}
                     <div className="mb-6 border-b border-stone-800 pb-6">
@@ -308,8 +295,7 @@ const DeleteProductPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
+        </div>
     );
 };
 
