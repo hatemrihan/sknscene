@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         const isDev = process.env.NODE_ENV === 'development';
 
         return NextResponse.json(
-            { success: false, error: isDev ? message : 'Failed to create product' },
+            { success: false, error: isDev ? message : 'Failed to create product, talk to hatoom' },
             { status: 500 }
         );
     }
