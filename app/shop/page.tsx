@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { ShopClient } from './_components/ShopClient';
 
-const BASE_URL = 'https://sknscene.netlify.app';
+const BASE_URL = 'https://sknscene.vercel.app';
 
 type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

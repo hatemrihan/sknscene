@@ -3,7 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase';
 
 export const revalidate = 86400; // Regenerate sitemap every 24 hours
 
-const BASE_URL = 'https://sknscene.netlify.app';
+const BASE_URL = 'https://sknscene.vercel.app';
 
 // Priority map for static routes
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [

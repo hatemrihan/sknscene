@@ -4,7 +4,7 @@ import { getProductBySlug, getRelatedProducts } from '@/models/product';
 import { getStoreSettings } from '@/lib/settings';
 import { ProductClient } from './_components/ProductClient';
 
-const BASE_URL = 'https://sknscene.netlify.app';
+const BASE_URL = 'https://sknscene.vercel.app';
 
 type Props = {
     params: Promise<{ slug: string }>;

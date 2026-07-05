@@ -5,7 +5,7 @@ import Categories from './sections/categories';
 import Products from './sections/products';
 import Footer from './sections/footer';
 
-const BASE_URL = 'https://sknscene.netlify.app';
+const BASE_URL = 'https://sknscene.vercel.app';
 
 export const metadata: Metadata = {
     title: 'Sknscene — Premium Skincare for Girls',

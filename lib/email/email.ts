@@ -14,7 +14,7 @@ function getResend(): Resend {
 }
 
 // The "from" address must be a verified domain in Resend
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Sknscene <noreply@sknscene.netlify.app>';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Sknscene <noreply@sknscene.vercel.app>';
 
 // ─── Types ────────────────────────────────────────────────────
 

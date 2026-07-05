@@ -48,7 +48,7 @@ const futura = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sknscene.netlify.app'),
+  metadataBase: new URL('https://sknscene.vercel.app'),
   title: {
     template: '%s | Sknscene',
     default: 'Sknscene — Premium Skincare for Girls',
@@ -57,12 +57,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sknscene — Premium Skincare for Girls',
     description: 'Premium skincare for girls — curated clean beauty formulas, modern self-care essentials, delivered to your door in Lebanon.',
-    url: 'https://sknscene.netlify.app',
+    url: 'https://sknscene.vercel.app',
     siteName: 'Sknscene',
     locale: 'en_US',
     type: 'website',
     images: [{
-      url: 'https://sknscene.netlify.app/og-default.jpg',
+      url: 'https://sknscene.vercel.app/og-default.jpg',
       width: 1200,
       height: 630,
       alt: 'Sknscene',
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sknscene — Premium Skincare for Girls',
     description: 'Premium skincare for girls — curated clean beauty formulas, modern self-care essentials, delivered to your door in Lebanon.',
-    images: ['https://sknscene.netlify.app/og-default.jpg'],
+    images: ['https://sknscene.vercel.app/og-default.jpg'],
   },
   robots: {
     index: true,
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://sknscene.netlify.app',
+    canonical: 'https://sknscene.vercel.app',
   },
 };
 

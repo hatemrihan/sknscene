@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://sknscene.netlify.app';
+const BASE_URL = 'https://sknscene.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
     return {
