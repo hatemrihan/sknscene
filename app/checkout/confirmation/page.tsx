@@ -10,7 +10,7 @@ function ConfirmationContent() {
     const orderId = searchParams.get('orderId') || '---';
 
     return (
-        <div className="min-h-screen bg-[#F5F2EB]" dir="ltr">
+        <div className="min-h-screen bg-white" dir="ltr">
             <Nav />
 
             <div className="pt-28 pb-20">
@@ -76,7 +76,7 @@ function ConfirmationContent() {
 export default function OrderConfirmationPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#F5F2EB] flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-neutral-900" />
             </div>
         }>

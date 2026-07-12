@@ -4,6 +4,11 @@ import Header from './sections/header';
 import Categories from './sections/categories';
 import Products from './sections/products';
 import Footer from './sections/footer';
+import Featured from './sections/featured';
+
+/** Force dynamic rendering so Products section always fetches fresh data */
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const BASE_URL = 'https://sknscene.vercel.app';
 
@@ -61,6 +66,7 @@ export default function Home() {
             <Header />
             <Categories />
             <Products />
+            <Featured />
             <Footer />
         </>
     );

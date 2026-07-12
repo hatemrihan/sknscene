@@ -182,7 +182,6 @@ export default function Nav() {
 
     const isHome = pathname === '/';
     const showNavBackground = scrolled || !isHome;
-    const showMobileBg = (scrolled || menuOpen || !isHome) && !searchOpen;
 
     return (
         <>
@@ -197,59 +196,62 @@ export default function Nav() {
                 id="desktop-nav"
             >
                 <div className={`
-                    max-w-[1440px] mx-auto flex items-center justify-between transition-all duration-500 ease-out px-8 lg:px-12 pointer-events-none
-                    ${showNavBackground ? 'h-[80px]' : 'h-[140px]'}
+                    max-w-[1440px] mx-auto w-full relative transition-all duration-500 ease-out px-8 lg:px-12 pointer-events-none
+                    ${showNavBackground ? 'h-[80px]' : 'h-[120px]'}
                 `}>
-                    {/* ── Logo ────────────────────────────────────────── */}
-                    <Link
-                        href={'/'}
-                        className="relative flex items-center gap-2 group pointer-events-auto"
-                        aria-label="Sknscene home"
-                    >
-                        <Image
-                            src="/images/logowithoutbg.webp"
-                            alt="Sknscene Logo"
-                            width={1500}
-                            height={600}
-                            className={`w-auto object-contain transition-all duration-500 ease-out select-none ${
-                                showNavBackground ? 'h-[50px]' : 'h-[90px]'
-                            }`}
-                            draggable={false}
-                        />
-                    </Link>
+                    {/* ── Left-aligned Logo ───────────────────────────── */}
+                    <div className="absolute left-8 lg:left-12 top-1/2 -translate-y-1/2 flex items-center pointer-events-auto">
+                        <Link
+                            href={'/'}
+                            className="relative flex items-center group"
+                            aria-label="Sknscene home"
+                        >
+                            <Image
+                                src="/images/logowithoutbg.webp"
+                                alt="Sknscene Logo"
+                                width={1500}
+                                height={600}
+                                className={`w-auto object-contain transition-all duration-500 ease-out select-none ${showNavBackground ? 'h-[90px]' : 'h-[90px]'
+                                    }`}
+                                draggable={false}
+                            />
+                        </Link>
+                    </div>
 
-                    {/* ── Center links ────────────────────────────────── */}
-                    <ul className="flex items-center gap-1 pointer-events-auto" role="list">
-                        {localizedItems.map((item) => (
-                            <li key={item.href}>
-                                <Link
-                                    href={item.href}
-                                    className={`
-                    relative px-4 py-2 text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300
-                    ${isActive(item.href) ? 'text-foreground font-semibold' : 'text-muted-foreground hover:text-foreground'}
-                  `}
-                                >
-                                    {item.label}
-                                    {/* Active indicator underline */}
-                                    {isActive(item.href) && (
-                                        <span className="absolute bottom-0 left-4 right-4 h-[1.5px] transition-colors duration-300 bg-foreground" />
-                                    )}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                    {/* ── Centered Links (lowered a little) ────────────── */}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-[calc(50%-3px)] flex items-center pointer-events-auto">
+                        <ul className="flex items-center gap-1.5" role="list">
+                            {localizedItems.map((item) => (
+                                <li key={item.href}>
+                                    <Link
+                                        href={item.href}
+                                        className={`
+                                            group/link relative px-3.5 py-2 text-[12.5px] font-light uppercase tracking-[0.12em] transition-colors duration-500
+                                            ${isActive(item.href) ? 'text-[#3D2314]' : 'text-[#3D2314]/50 hover:text-[#3D2314]'}
+                                        `}
+                                    >
+                                        {item.label}
+                                        {/* Smooth hover underline transition */}
+                                        <span className={`
+                                            absolute bottom-0 left-3.5 right-3.5 h-[1px] bg-[#3D2314] transition-transform duration-700 ease-in-out origin-left
+                                            ${isActive(item.href) ? 'scale-x-100' : 'scale-x-0 group-hover/link:scale-x-100'}
+                                        `} />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                    {/* ── Right actions ───────────────────────────────── */}
-                    <div className="flex items-center gap-1 pointer-events-auto">
+                    {/* ── Right actions (absolute so center stays centered) ── */}
+                    <div className="absolute right-8 lg:right-12 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-auto">
                         {/* Search Desktop */}
                         <div className="relative" ref={desktopSearchRef}>
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 onClick={() => setSearchOpen(!searchOpen)}
-                                className={`rounded-full w-10 h-10 transition-colors duration-300 ${
-                                    searchOpen ? 'text-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-accent/40'
-                                }`}
+                                className={`rounded-full w-10 h-10 transition-colors duration-300 ${searchOpen ? 'text-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-accent/40'
+                                    }`}
                                 aria-label="Search"
                             >
                                 <Search className="w-[18px] h-[18px]" strokeWidth={1.5} />
@@ -387,8 +389,7 @@ export default function Nav() {
                                 {menuOpen ? (
                                     <X className="w-[20px] h-[20px]" strokeWidth={1.5} />
                                 ) : (
-                                    <div className="flex flex-col gap-1.5 justify-center items-center w-5 h-5">
-                                        <span className="w-5 h-[1.5px] bg-current rounded-full" />
+                                    <div className="flex flex-col gap-[5px] justify-center items-center w-5 h-5">
                                         <span className="w-5 h-[1.5px] bg-current rounded-full" />
                                         <span className="w-5 h-[1.5px] bg-current rounded-full" />
                                     </div>
@@ -406,9 +407,9 @@ export default function Nav() {
                             <Image
                                 src="/images/logowithoutbg.webp"
                                 alt="Sknscene Logo"
-                                width={300}
-                                height={120}
-                                className="h-[50px] md:h-[55px] w-auto object-contain select-none transition-all duration-300"
+                                width={400}
+                                height={160}
+                                className="h-[60px] w-auto object-contain select-none transition-all duration-300"
                                 draggable={false}
                             />
                         </Link>

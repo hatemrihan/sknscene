@@ -1,48 +1,144 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ChevronDown } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Header() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const videoWrapRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLDivElement>(null);
+    const [typingStarted, setTypingStarted] = useState(false);
+    const [typedText, setTypedText] = useState('');
+
+    const fullText = 'Natural Skincare';
+
+    // ── Scroll-driven video shrink (direct DOM, no re-renders) ──
+    useEffect(() => {
+        const section = sectionRef.current;
+        const wrap = videoWrapRef.current;
+        if (!section || !wrap) return;
+
+        let ticking = false;
+
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const rect = section.getBoundingClientRect();
+                const h = section.offsetHeight;
+                const raw = -rect.top / (h * 0.5);
+                const p = Math.max(0, Math.min(1, raw));
+
+                const s = 1 - p * 0.48;
+                const r = p * 28;
+                wrap.style.transform = `scale(${s})`;
+                wrap.style.borderRadius = `${r}px`;
+
+                ticking = false;
+            });
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    // ── Intersection observer for typing trigger ──
+    useEffect(() => {
+        const el = textRef.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTypingStarted(true);
+                    obs.disconnect();
+                }
+            },
+            { threshold: 0.05 }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, []);
+
+    // ── Typing animation ──
+    useEffect(() => {
+        if (!typingStarted) return;
+        let i = 0;
+        const iv = setInterval(() => {
+            i++;
+            setTypedText(fullText.slice(0, i));
+            if (i >= fullText.length) {
+                clearInterval(iv);
+            }
+        }, 110);
+        return () => clearInterval(iv);
+    }, [typingStarted]);
+
+    // Split typed text into words for styling
+    const words = typedText.split(' ');
+
     return (
-        <section className="relative w-full h-screen min-h-[650px] md:min-h-[750px] overflow-hidden bg-[#F5F2EB] flex flex-col justify-center items-center" dir="ltr">
-            {/* Center Logo & Content Container */}
-            <div className="max-w-[1440px] mx-auto w-full px-8 lg:px-12 relative z-10 flex flex-col justify-center items-center text-center h-[65dvh] pt-16 md:pt-0">
-                <div className="mb-8 select-none">
-                    <Image
-                        src="/images/logowithoutbg.webp"
-                        alt="Sknscene Logo"
-                        width={600}
-                        height={240}
-                        className="w-[280px] md:w-[420px] h-auto object-contain"
-                        priority
-                        draggable={false}
-                    />
+        <section ref={sectionRef} className="relative bg-white" dir="ltr">
+            {/* ═══ VIDEO ZONE — sticky, shrinks on scroll ═══ */}
+            <div style={{ height: '180vh' }}>
+                <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+                    <div
+                        ref={videoWrapRef}
+                        className="w-full h-full overflow-hidden"
+                        style={{
+                            willChange: 'transform',
+                            transformOrigin: 'center center',
+                        }}
+                    >
+                        {/* Mobile — one.mp4 */}
+                        <video
+                            autoPlay loop muted playsInline
+                            className="md:hidden w-full h-full object-cover"
+                        >
+                            <source src="/videos/one.mp4" type="video/mp4" />
+                        </video>
+
+                        {/* Desktop — two.mp4 only */}
+                        <video
+                            autoPlay loop muted playsInline
+                            className="hidden md:block w-full h-full object-cover"
+                        >
+                            <source src="/videos/two.mp4" type="video/mp4" />
+                        </video>
+                    </div>
                 </div>
-                <h1 className="text-[clamp(2rem,5vw,3.2rem)] leading-tight text-[#3D2314] font-sans font-light mb-5 tracking-tight">
-                    Natural
-                    <span className="italic font-normal font-sans ml-2">Skincare</span>
-                </h1>
-                <p className="text-[#3D2314]/80 text-[13px] md:text-sm font-light tracking-wide leading-relaxed max-w-[360px] mb-8">
-                    Start your day with gentle care and nourishing ingredients designed to awaken your skin naturally.
-                </p>
-                <Link
-                    href="/shop"
-                    className="inline-block text-[#3D2314] text-[11px] font-semibold tracking-[0.2em] uppercase border-b border-[#3D2314]/60 pb-1.5 hover:border-[#3D2314] hover:opacity-90 transition-all duration-300"
-                >
-                    Shop Now
-                </Link>
             </div>
 
-            {/* Scroll Down Indicator */}
-            <div className="absolute bottom-10 right-10 flex items-center gap-2.5 text-[#3D2314]/50 text-[10px] tracking-[0.2em] uppercase font-bold z-30 hidden sm:flex">
-                <span>Scroll Down</span>
-                <ChevronDown className="h-3.5 w-3.5 animate-bounce text-[#3D2314]/80" strokeWidth={2.5} />
+            {/* ═══ TEXT ZONE — below video, tight to it ═══ */}
+            <div
+                ref={textRef}
+                className="relative z-10 w-full bg-white flex items-start justify-start px-8 md:px-16 lg:px-24 pt-10 md:pt-16 pb-20"
+            >
+                <h1
+                    className="w-full whitespace-nowrap leading-[1] text-[#3D2314] font-light tracking-tighter"
+                    style={{ fontSize: 'clamp(3rem, 11.5vw, 15rem)' }}
+                >
+                    {words.map((word, idx) => (
+                        <span key={idx}>
+                            {idx === 1 ? (
+                                <span className="italic font-normal">{word}</span>
+                            ) : (
+                                word
+                            )}
+                            {idx < words.length - 1 && ' '}
+                        </span>
+                    ))}
+                    {typingStarted && typedText.length < fullText.length && (
+                        <span className="inline-block w-[3px] h-[0.7em] bg-[#3D2314]/50 ml-1 align-middle animate-[blink_1s_step-end_infinite]" />
+                    )}
+                </h1>
             </div>
+
+            <style jsx>{`
+                @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
+                }
+            `}</style>
         </section>
     );
 }
-
-

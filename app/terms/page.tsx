@@ -9,7 +9,7 @@ const TermsPage = () => {
     return (
         <>
             <Nav />
-            <main className="min-h-screen bg-[#F5F2EB] pt-20 transition-colors duration-300" dir="ltr">
+            <main className="min-h-screen bg-white pt-20 transition-colors duration-300" dir="ltr">
                 <div className="px-4 py-16">
                     <h1 className="font-extrabold pt-4 text-black max-w-4xl mx-auto px-10 mb-4 text-lg text-left">
                         Terms of Service

@@ -338,7 +338,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
 
     if (!product) {
         return (
-            <div className="min-h-screen bg-[#EEDDCF] flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <div className="text-center">
                     <h2 className="text-xl font-bold text-stone-950 font-sans mb-4">Product not found</h2>
                     <Link
@@ -355,7 +355,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
     // ── Render ───────────────────────────────────────────────────
     return (
         <>
-            <div className="min-h-screen bg-[#EEDDCF]">
+            <div className="min-h-screen bg-white">
                 <Nav />
 
                 <div className="pt-20">

@@ -68,7 +68,7 @@ const ContactClient = () => {
     return (
         <>
             <Nav />
-            <main className="min-h-screen bg-[#F5F2EB]  pt-20 transition-colors duration-300" dir="ltr">
+            <main className="min-h-screen bg-white  pt-20 transition-colors duration-300" dir="ltr">
                 <div className="px-4 py-16">
                     <div className="space-y-6 text-black transition-colors duration-300 max-w-4xl mx-auto">
                         <h2 className="pt-4 mb-4 text-black font-bold text-center text-lg">Contact Us</h2>

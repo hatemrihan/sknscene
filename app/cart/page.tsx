@@ -23,7 +23,7 @@ export default function CartPage() {
     // ── Empty cart ───────────────────────────────────────────────
     if (items.length === 0) {
         return (
-            <div className="min-h-screen bg-[#F5F2EB]" dir="ltr">
+            <div className="min-h-screen bg-white" dir="ltr">
                 <Nav />
                 <div className="pt-28 pb-20">
                     <div className="max-w-3xl mx-auto px-6 text-center">
@@ -51,7 +51,7 @@ export default function CartPage() {
 
     // ── Cart with items ─────────────────────────────────────────
     return (
-        <div className="min-h-screen bg-[#F5F2EB]" dir="ltr">
+        <div className="min-h-screen bg-white" dir="ltr">
             <Nav />
 
             <div className="pt-24 pb-20">
@@ -200,10 +200,10 @@ function CartItemRow({ item, onRemove, onQuantityChange }: CartItemRowProps) {
                         value={String(item.quantity)}
                         onValueChange={(val) => onQuantityChange(parseInt(val, 10))}
                     >
-                        <SelectTrigger className="w-[72px] h-10 border border-neutral-300 bg-[#F5F2EB] text-neutral-900 text-sm">
+                        <SelectTrigger className="w-[72px] h-10 border border-neutral-300 bg-white text-neutral-900 text-sm">
                             <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-[#F5F2EB] border border-neutral-200">
+                        <SelectContent className="bg-white border border-neutral-200">
                             {Array.from({ length: Math.min(item.maxStock || 10, 10) }, (_, i) => i + 1).map((num) => (
                                 <SelectItem
                                     key={num}

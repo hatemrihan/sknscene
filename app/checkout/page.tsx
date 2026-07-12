@@ -303,7 +303,7 @@ export default function CheckoutPage() {
 
     if (!settingsLoaded) {
         return (
-            <div className="min-h-screen bg-[#F5F2EB]">
+            <div className="min-h-screen bg-white">
                 <Nav />
                 <div className="flex items-center justify-center h-[60vh]">
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-neutral-300" />
@@ -315,7 +315,7 @@ export default function CheckoutPage() {
 
     // ── Render ────────────────────────────────────────────────
     return (
-        <div className="min-h-screen bg-[#F5F2EB]" dir="ltr">
+        <div className="min-h-screen bg-white" dir="ltr">
             <Nav />
 
             <div className="pt-24 pb-20">

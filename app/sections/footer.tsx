@@ -55,7 +55,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="w-full bg-[#EEDDCF] text-[#3D2314] py-20 px-6 lg:px-12 border-t border-[#3D2314]/20 font-sans text-[13px] tracking-tight" dir="ltr">
+        <footer className="w-full bg-white text-[#3D2314] py-20 px-6 lg:px-12 font-sans text-[13px] tracking-tight" dir="ltr">
             <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
                 {/* ── LEFT SIDE (lg:col-span-7) ── */}
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-12">
@@ -115,13 +115,8 @@ export default function Footer() {
                 </div>
 
                 {/* ── RIGHT SIDE (lg:col-span-5) ── */}
-                <div className="lg:col-span-5 flex flex-col justify-between space-y-12 lg:border-l lg:border-[#3D2314]/25 lg:pl-16">
-                    {/* Serif Tagline */}
-                    <div>
-                        <p className="text-3xl md:text-4.5xl text-[#3D2314] font-serif italic tracking-wide text-left lg:text-right leading-snug">
-                            Glow that speaks for itself
-                        </p>
-                    </div>
+                <div className="lg:col-span-5 flex flex-col justify-end space-y-12 lg:border-l lg:border-[#3D2314]/25 lg:pl-16">
+
 
                     {/* Integrated Minimalist Newsletter Form */}
                     <div className="space-y-6">
