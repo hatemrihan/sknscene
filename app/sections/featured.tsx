@@ -8,25 +8,31 @@ export default function Featured() {
       {/* Desktop / Laptop — one.mp4 */}
       <div className="featured-video featured-video--desktop">
         <video
-          src="/videos/one.mp4"
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
           className="featured-video__player"
-        />
+        >
+          <source src="/videos/one_optimized.webm" type="video/webm" />
+          <source src="/videos/one.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Mobile / iPhone — two.mp4 */}
       <div className="featured-video featured-video--mobile">
         <video
-          src="/videos/two.mp4"
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
           className="featured-video__player"
-        />
+        >
+          <source src="/videos/two_optimized.webm" type="video/webm" />
+          <source src="/videos/two.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <style jsx>{`

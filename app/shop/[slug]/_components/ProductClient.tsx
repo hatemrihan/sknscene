@@ -361,10 +361,10 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                 <div className="pt-20">
                     <div className="max-w-[1100px] mx-auto px-6 lg:px-0 py-8">
                         {/* ═══ Main Product Section ═══ */}
-                        {/* RTL layout: Details RIGHT | Images CENTER | Thumbnails LEFT */}
-                        <div className="grid grid-cols-1 lg:grid-cols-[420px_minmax(400px,600px)_100px] gap-4 lg:gap-10 mb-8 lg:mb-16">
+                        {/* Layout: Details LEFT | Images CENTER | Thumbnails RIGHT */}
+                        <div className="grid grid-cols-1 lg:grid-cols-[420px_minmax(300px,1fr)_80px] gap-4 lg:gap-28 mb-8 lg:mb-16">
 
-                            {/* ── RIGHT (RTL): Product Details ──────────── */}
+                            {/* ── RIGHT: Product Details ──────────── */}
                             <div className="space-y-4 order-2 lg:order-1">
                                 {/* Breadcrumb — desktop */}
                                 <nav aria-label="breadcrumb" className="hidden lg:block text-xs text-stone-500 mb-4">
@@ -543,7 +543,7 @@ export function ProductClient({ initialProduct, relatedProducts, lowStockThresho
                                 </div>
                             </div>
 
-                            {/* ── LEFT (RTL): Thumbnails — Desktop ──────── */}
+                            {/* ── RIGHT: Thumbnails — Desktop ──────── */}
                             <div className="hidden lg:block order-3">
                                 {allMedia.length > 1 && (
                                     <div className="flex flex-col gap-3 sticky top-24">

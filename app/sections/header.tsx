@@ -30,8 +30,8 @@ export default function Header() {
 
                 const s = 1 - p * 0.48;
                 const r = p * 28;
-                wrap.style.transform = `scale(${s})`;
-                wrap.style.borderRadius = `${r}px`;
+                wrap.style.transform = `scale(${s}) translateZ(0)`;
+                wrap.style.clipPath = `inset(0 round ${r}px)`;
 
                 ticking = false;
             });
@@ -85,23 +85,29 @@ export default function Header() {
                         ref={videoWrapRef}
                         className="w-full h-full overflow-hidden"
                         style={{
-                            willChange: 'transform',
+                            willChange: 'transform, clip-path',
                             transformOrigin: 'center center',
+                            backfaceVisibility: 'hidden',
+                            WebkitBackfaceVisibility: 'hidden',
                         }}
                     >
-                        {/* Mobile — one.mp4 */}
+                        {/* Mobile — optimized */}
                         <video
                             autoPlay loop muted playsInline
+                            preload="metadata"
                             className="md:hidden w-full h-full object-cover"
                         >
+                            <source src="/videos/one_optimized.webm" type="video/webm" />
                             <source src="/videos/one.mp4" type="video/mp4" />
                         </video>
 
-                        {/* Desktop — two.mp4 only */}
+                        {/* Desktop — optimized */}
                         <video
                             autoPlay loop muted playsInline
+                            preload="metadata"
                             className="hidden md:block w-full h-full object-cover"
                         >
+                            <source src="/videos/two_optimized.webm" type="video/webm" />
                             <source src="/videos/two.mp4" type="video/mp4" />
                         </video>
                     </div>
